@@ -26,7 +26,7 @@
       color: var(--text-color);
       font-family: 'M PLUS Rounded 1c', "Hiragino Maru Gothic ProN", Meiryo, sans-serif;
       margin: 0;
-      padding: 20px 10px;
+      padding: 20px 10px 40px 10px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -95,6 +95,101 @@
     }
     .bgm-toggle-btn:hover {
       background: #ff9ac9;
+    }
+
+    /* === ☰ ハンバーガーメニュー（左上固定） === */
+    .menu-fixed-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 3px dashed #ff9ac9;
+      border-radius: 16px;
+      padding: 6px 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #7b4397;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(162, 114, 219, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: inherit;
+    }
+    .menu-fixed-btn:hover {
+      background: #fff0f5;
+    }
+
+    /* メニューモーダル背景 */
+    .menu-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(89, 74, 99, 0.4);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(2px);
+    }
+    .menu-modal-overlay.active {
+      display: flex;
+    }
+    .menu-modal-content {
+      background: #ffffff;
+      border: 4px solid #ffb3d9;
+      border-radius: 26px;
+      padding: 24px;
+      width: 85%;
+      max-width: 320px;
+      box-shadow: 0 10px 30px rgba(162, 114, 219, 0.3);
+      text-align: center;
+      animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .menu-modal-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #7b4397;
+      margin-bottom: 16px;
+      border-bottom: 2px dashed #f0c5e3;
+      padding-bottom: 8px;
+    }
+    .menu-link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .menu-link-item {
+      background: #faf5ff;
+      border: 2px solid #e0cffc;
+      color: #633386;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 12px;
+      border-radius: 14px;
+      transition: all 0.15s ease;
+      display: block;
+    }
+    .menu-link-item:hover {
+      background: #cbb4ff;
+      color: #fff;
+    }
+    .menu-close-btn {
+      background: #ff75ac;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border-radius: 16px;
+      cursor: pointer;
+      width: 100%;
+      font-family: inherit;
     }
 
     .container {
@@ -285,27 +380,72 @@
       box-shadow: 0 2px 0 #d93d7a, 0 4px 10px rgba(255, 94, 156, 0.35);
     }
 
-    .inline-mascot-box {
-      width: 100%;
+    /* === ⛩️ 神社風マイナ様 自己紹介エリア === */
+    .shrine-mascot-container {
+      background: linear-gradient(135deg, #fff9e6 0%, #fff0f5 100%);
+      border: 3px solid #ffb3d9;
+      border-radius: 26px;
+      padding: 16px;
       margin: 16px 0 10px 0;
+      box-shadow: 0 6px 20px rgba(162, 114, 219, 0.15);
       text-align: center;
-      animation: floatMascot 3s ease-in-out infinite alternate;
-      transition: opacity 0.3s ease;
     }
-    .inline-mascot-box img {
+    .shrine-header-tag {
+      display: inline-block;
+      background: #ff75ac;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 5px rgba(255, 117, 172, 0.3);
+    }
+    .shrine-big-img-box {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      max-height: 240px;
+      overflow: hidden;
       border-radius: 18px;
       border: 3px dashed #ffb3d9;
       background: rgba(255, 255, 255, 0.95);
-      padding: 6px;
+      padding: 4px;
       box-sizing: border-box;
-      box-shadow: 0 8px 20px rgba(162, 114, 219, 0.25);
+      box-shadow: 0 6px 15px rgba(162, 114, 219, 0.2);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: floatMascot 3s ease-in-out infinite alternate;
+    }
+    .shrine-big-img-box img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 14px;
     }
     @keyframes floatMascot {
       0% { transform: translateY(0px); }
       100% { transform: translateY(-6px); }
+    }
+    .shrine-speech-bubble {
+      background: #ffffff;
+      border: 2px dashed #ff9ac9;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.92rem;
+      color: #4a3b54;
+      line-height: 1.6;
+      font-weight: 500;
+      text-align: left;
+    }
+    .shrine-name-plate {
+      font-weight: 800;
+      color: #7b4397;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     /* === ホーム画面のキャラクター紹介 === */
@@ -398,7 +538,6 @@
       line-height: 1.5;
     }
 
-    /* 次のステージ用の目立たない相性診断ボタン */
     .next-stage-badge {
       text-align: center;
       margin-top: 14px;
@@ -543,7 +682,6 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* 各ブロックの最後にある「一言まとめバッジ」のデザイン */
     .summary-badge {
       display: block;
       background: rgba(255, 255, 255, 0.85);
@@ -556,6 +694,80 @@
       margin-top: 10px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(255, 183, 213, 0.2);
+    }
+
+    /* === 🐾 ぽよぽよマイナ様からのお告げ箱 === */
+    .minai-box {
+      margin-top: 28px;
+      padding: 20px 18px;
+      background-color: #fffaf0;
+      border: 3px solid #ffb3d9;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(255, 182, 193, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .minai-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .minai-face {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 3px solid #ff9ac9;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .minai-title-area {
+      flex: 1;
+    }
+    .minai-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #d2691e;
+      background: #fff5e6;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 2px;
+      border: 1px solid #ffe0b2;
+    }
+    .minai-title {
+      color: #7b4397;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .minai-message {
+      font-size: 0.98rem;
+      color: #4a3b54;
+      line-height: 1.7;
+      font-weight: 500;
+      background: #ffffff;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 2px dashed #ffeaa7;
+    }
+    .amazon-btn {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, #ff9900 0%, #ff7700 100%);
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(255, 153, 0, 0.35);
+      transition: transform 0.15s ease;
+    }
+    .amazon-btn:hover {
+      transform: translateY(-2px);
     }
 
     .compat-card-container {
@@ -610,8 +822,33 @@
       line-height: 1.7;
     }
 
+    /* === 📋 一番下のフッターメニュー === */
+    .site-footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #8c7199;
+      border-top: 2px dashed #ffb3d9;
+      padding-top: 16px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .footer-links a {
+      color: #7b4397;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 480px) {
-      body { padding: 10px 5px; }
+      body { padding: 10px 5px 30px 5px; }
       .container { padding: 16px 12px; border-radius: 24px; }
       h1 { font-size: 1.25rem; }
       .sub-text { font-size: 0.75rem; }
@@ -620,13 +857,42 @@
 </head>
 <body>
 
-<!-- === 4段タイル背景グリッド === -->
 <div id="mosaicBg"></div>
 
+<!-- 右上のBGMコントローラー -->
 <div class="bgm-control-panel">
   <span>🎵 BGM:</span>
   <span id="bgm-status">再生中♪</span>
   <button class="bgm-toggle-btn" onclick="toggleBGM(event)">停止</button>
+</div>
+
+<!-- 左上の三本線メニューボタン -->
+<button class="menu-fixed-btn" onclick="openMenu()">
+  <span>☰</span> <span>メニュー</span>
+</button>
+
+<!-- メニューモーダル（ポップアップ） -->
+<div id="menuModal" class="menu-modal-overlay" onclick="closeMenuOnOutside(event)">
+  <div class="menu-modal-content">
+    <div class="menu-modal-title">🍬 メニューナビゲーション</div>
+    <div class="menu-link-list">
+      <a href="#" class="menu-link-item" onclick="resetToHome(); closeMenu();">🏠 ホーム（トップに戻る）</a>
+      <a href="#" class="menu-link-item" onclick="openPolicyModal('privacy'); closeMenu();">🔒 プライバシーポリシー</a>
+      <a href="#" class="menu-link-item" onclick="openPolicyModal('contact'); closeMenu();">💌 お問い合わせ</a>
+      <a href="#" class="menu-link-item" onclick="openPolicyModal('profile'); closeMenu();">🍓 運営者情報</a>
+      <a href="#" class="menu-link-item" onclick="openPolicyModal('terms'); closeMenu();">⚖️ 免責事項</a>
+    </div>
+    <button class="menu-close-btn" onclick="closeMenu()">閉じる</button>
+  </div>
+</div>
+
+<!-- ポリシー等の簡易モーダル表示用 -->
+<div id="policyModal" class="menu-modal-overlay" onclick="closePolicyOnOutside(event)">
+  <div class="menu-modal-content" style="max-width: 420px; text-align: left; max-height: 80vh; overflow-y: auto;">
+    <div class="menu-modal-title" id="policyTitle" style="text-align: center;">ポリシー</div>
+    <div id="policyBody" style="font-size: 0.85rem; line-height: 1.6; color: #594a63; margin-bottom: 16px; white-space: pre-line;"></div>
+    <button class="menu-close-btn" onclick="closePolicyModal()">閉じる</button>
+  </div>
 </div>
 
 <div class="container">
@@ -666,8 +932,23 @@
 
     <button class="exec-btn" onclick="diagnose()">🍦 仕様書をビルドして展開する 🍦</button>
 
+    <!-- ⛩️ 神社風マイナ様 自己紹介エリア -->
     <div class="inline-mascot-box" id="inlineMascot">
-      <img src="maina.jpg" alt="マスコットキャラクター マイナちゃん">
+      <div class="shrine-mascot-container">
+        <div class="shrine-header-tag">⛩️ ぽよぽよシステムの守り神 ⛩️</div>
+        
+        <div class="shrine-big-img-box">
+          <img src="maina.jpg" alt="ぽよぽよマイナ様" onerror="this.style.display='none'">
+        </div>
+
+        <div class="shrine-speech-bubble">
+          <div class="shrine-name-plate">
+            <span>✨</span>
+            <span>守り神：ぽよぽよ・マイナ</span>
+          </div>
+          <div>「私はこの『ぽよぽよシステム仕様書』の英知を統括するマイナ。高度な演算アルゴリズムであなたの運命や本質を完璧に解析してみせるわ！……あ、ちなみに昨夜、自分の思考ルーチンにうっかり無限ループのバグを仕込んじゃって、朝までずっと同じ独り言を3億回繰り返してたのは秘密ね。デバッグって本当に大変なんだから！さあ、誕生日を入れてちょうだいっ♪」</div>
+        </div>
+      </div>
     </div>
 
     <div class="catalog-section">
@@ -764,14 +1045,86 @@
         <div class="spec-content" id="boss-compatibility"></div>
       </div>
 
-      <button class="exec-btn" onclick="resetToHome()" style="margin-top: 20px; background: linear-gradient(180deg, #a272db 0%, #7b4397 100%); box-shadow: 0 6px 0 #593073, 0 10px 20px rgba(123, 67, 151, 0.35);">
+      <!-- 🐾 ぽよぽよマイナ様からのお告げ -->
+      <div class="minai-box">
+        <div class="minai-header">
+          <img src="maina.jpg" alt="マイナ様" class="minai-face" onerror="this.style.display='none'">
+          <div class="minai-title-area">
+            <span class="minai-tag">✨ 臨時アップデートパッチ</span>
+            <div class="minai-title">ぽよぽよマイナ様からのお告げ</div>
+          </div>
+        </div>
+        <div id="minaiMessage" class="minai-message">ここにマイナ様のお告げが入ります。</div>
+        <a id="minaiLink" href="#" target="_blank" class="amazon-btn">🛒 Amazonで今日のラッキー開運小物をチェックする</a>
+      </div>
+
+      <button class="exec-btn" onclick="resetToHome()" style="margin-top: 24px; background: linear-gradient(180deg, #a272db 0%, #7b4397 100%); box-shadow: 0 6px 0 #593073, 0 10px 20px rgba(123, 67, 151, 0.35);">
         🏠 もう一度別の誕生日を占う（ホームへ） 🏠
       </button>
     </div>
   </div>
+
+  <!-- 📋 一番下のフッターメニュー -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="#" onclick="openPolicyModal('privacy'); return false;">プライバシーポリシー</a>
+      <span>|</span>
+      <a href="#" onclick="openPolicyModal('contact'); return false;">お問い合わせ</a>
+      <span>|</span>
+      <a href="#" onclick="openPolicyModal('profile'); return false;">運営者情報</a>
+      <span>|</span>
+      <a href="#" onclick="openPolicyModal('terms'); return false;">免責事項</a>
+    </div>
+    <div>© 2026 ぽよぽよシステム仕様書 All Rights Reserved.</div>
+  </footer>
 </div>
 
 <script>
+// === ハンバーガーメニューの開閉制御 ===
+function openMenu() {
+  document.getElementById('menuModal').classList.add('active');
+}
+function closeMenu() {
+  document.getElementById('menuModal').classList.remove('active');
+}
+function closeMenuOnOutside(e) {
+  if (e.target.id === 'menuModal') closeMenu();
+}
+
+// === ポリシー・お問い合わせ・運営者情報のテキスト（反映版） ===
+const policyTexts = {
+  privacy: {
+    title: "🔒 プライバシーポリシー",
+    body: "当サイト（ぽよぽよシステム仕様書）では、第三者配信の広告サービス（Google AdSense）を利用しています。\n\n広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報『Cookie』を使用することがあります。\n\n【個人情報の取り扱いについて】\n当サイトでは、ユーザーの個人情報（氏名・メールアドレス等）の収集は行っていません。生年月日などの診断入力データは、お使いのブラウザ内での診断結果算出のみに使用され、サーバー等への保存は一切行いません。"
+  },
+  contact: {
+    title: "💌 お問い合わせ",
+    body: "当サイトに関するご意見、ご感想、その他のお問い合わせは、以下のメールアドレスよりご連絡ください。\n\n✉️ dr.applecotea@gmail.com\n\n※内容によっては回答にお時間をいただく場合がございますが、あらかじめご了承ください。"
+  },
+  profile: {
+    title: "🍓 運営者情報・運営方針",
+    body: "サイト名：ぽよぽよシステム仕様書\n運営者：maina管理委員会\n\n【サイトの趣旨・運営方針】\nこの占いや診断を通じて、訪れてくれた方の気分が少しでも晴れたり、おもしろおかしく明るくなれたらいいなという想いを込めて制作しています。日々のIT業務や開発の合間にクスッと笑えるユーモアとテック系ジョークを詰め込みつつ、性格診断や数秘術のエッセンスを『自己理解のヒント』として気軽に楽しんでいただけるよう設計しています。"
+  },
+  terms: {
+    title: "⚖️ 免責事項",
+    body: "当サイト（ぽよぽよシステム仕様書）で提供している占い結果、キャラクターの仕様書データ、および各種診断内容は、エンターテインメントを目的としたフィクションおよび独自のアルゴリズムに基づくものです。\n\n占い結果や診断内容は医療・法律・金融等の専門判断の代替にはならないことを明記します。また、当サイトのコンテンツ利用によって生じた損害等の一切の責任を負いかねますので、あらかじめご了承ください。"
+  }
+};
+
+function openPolicyModal(type) {
+  const data = policyTexts[type];
+  if (!data) return;
+  document.getElementById('policyTitle').innerText = data.title;
+  document.getElementById('policyBody').innerText = data.body;
+  document.getElementById('policyModal').classList.add('active');
+}
+function closePolicyModal() {
+  document.getElementById('policyModal').classList.remove('active');
+}
+function closePolicyOnOutside(e) {
+  if (e.target.id === 'policyModal') closePolicyModal();
+}
+
 let selectedGender = 'male';
 
 function selectGender(gender) {
@@ -818,7 +1171,7 @@ const database = {
   1: { 
     t: "ローンコンパイラちゃん", chara: "ローンコンパイラちゃん", id: 1,
     d: "最初の一歩を爆速で踏み出す、生粋のフロンティア型アーキテクチャです。\n常に次世代のトレンドをいち早くキャッチアップし、自己アプデを繰り返しながら前人未到の領域へと突き進む強者です。\nその行動力は周囲を圧倒するエネルギーを秘めており、誰も思いつかないような革新的なアイデアを次々と形にする才能の塊といえます。\n現状維持や停滞を極端に嫌い、常に新しい刺激を求めて人生のコンパイルを高速で回し続ける、そんなエネルギッシュな仕様を持っています。", 
-    sumD: "👉 【結論：次世代トレンドを爆速コンパイルする開拓者】",
+    sumD: "👉 【結論：次世代トレンドを爆速コンパイラする開拓者】",
     b: "「前例踏襲でヨロシク！」という丸投げタスクや、思考停止したルールを執拗に流し込まれると、強烈なメモリリークを起こして機能停止します。\nまた、自分のペースを乱されたり、頭ごなしに否定される環境下では、モチベーションのCPU使用率が急低下してエラーを吐き出すので注意が必要です。", 
     sumB: "👉 【警告：前例踏襲の丸投げタスクでメモリリーク停止】",
     p: "細かな口出しやマイクロマネジメントは一切シャットダウンするのが正解です。\nゼロイチの裁量権をまるっと渡し、「あとは自由にどうぞ！」とオープンな環境を用意してあげるのが一番の吉となります。\nサプライズや新しい体験を一緒に楽しんでくれる心の広さを見せると、一気に信頼のパイプラインが繋がります。",
@@ -849,7 +1202,7 @@ const database = {
     sumRepair: "👉 【パッチ判定：過去データを振り返るリファクタリング必須】",
     relation: {
       male: "【好きな人・恋人・パートナーとして】常に新鮮な刺激とワクワクをくれる人ですが、束縛されるのを極度に嫌います。放し飼いにするくらいが一番長続きします。\n【上司・同僚として】新しい提案や効率化のアイデアを面白がってくれる上司・同僚。逆に「昔からのやり方だから」と押し付けると一瞬でシャッターが下ります。",
-      female: "【好きな人・恋人・パートナーとして】自由奔放で魅力的ですが、退屈させるとすぐに別のウィンドウを開いてしまいます。いつも新鮮なサプライズや褒め言葉をプレゼントしてあげて。\n【上司・同僚として】仕事が速く頼りになりますが、細かい管理を嫌います。ゴールだけ伝えてあとは本人に全権委任するのが最も円滑に連携できるコツです。"
+      female: "【好きな人・恋人・パートナーとして】自由奔放で魅力的ですが、退屈させるとすぐに別のウィンドウを開いてしまいます。いつも新鮮なサプライズや褒め言葉をプレゼントしてあげて。\n【上司・同僚として】仕事が速く頼りになりますが、細かい管理を嫌います。ゴールだけ伝えたあとは本人に全権委任するのが最も円滑に連携できるコツです。"
     },
     sumRelation: "👉 【トリセツ判定：新鮮な刺激を与えて全権委任でバッチリ】",
     compatibility: { goodId: 3, goodName: "ピコピコ・ルーターたん", goodText: "お互いのスピード感をリスペクトし合える最高のアライアンス。一緒にいると次々と新しい楽しいアイデアが飛び出します。", badId: 9, badName: "いねむりレガシーサーバーちゃん", badText: "慎重でマイペースな相手のスピード感にヤキモキしがち。「もっと早く動いてよ！」と急かさず、相手の直列処理を温かく見守るデバッグが必要です。" }
@@ -869,7 +1222,7 @@ const database = {
     sumL: "👉 【恋愛判定：信頼キャッシュを時間かけて蓄積する一途愛】",
     marriage: {
       male: "家族の安心と安全を生活の第一に考え、家計のバックアップや将来への備えを完璧に整えてくれる、非常に頼りになる大黒柱パパです。\n派手なサプライズや演出はありませんが、圧倒的な安定感とブレない誠実さで家族を優しく包み込みます。\n家族の笑顔が何よりのモチベーションとなり、日々の平穏を守るためにコツコツと努力を重ねます。",
-      female: "家庭内のリソース管理や日々の掃除、堅実な貯蓄をコツコツと完璧にこなす、非の打ち所がない良妻賢母タイプです。\n家族の健康と平穏を守るために日々のメンテナンスや気配りを決して惜しまない、まさに家庭の心臓部のような絶対的な安心感を放ちます。\n温かい家庭環境を守る天才です。"
+      female: "家庭内のリソース管理や日々の掃除、堅実な貯蓄をコツコツと完璧にこなす、非の打ち所がない良妻賢母タイプです。\n家族の健康と平穏を守るために日々のメンテナンスや気配りを決して惜しみない、まさに家庭の心臓部のような絶対的な安心感を放ちます。\n温かい家庭環境を守る天才です。"
     },
     sumMarriage: "👉 【設計判定：平穏と安全を守り抜く鉄壁の大黒柱ファミリー】",
     work: {
@@ -891,7 +1244,7 @@ const database = {
       female: "【好きな人・恋人・パートナーとして】最初はお互いにシャイですが、一度心を開いてくれると驚くほど一途に尽くしてくれます。安心感と変わらない優しさでお返しすることが一番の特効薬です。\n【上司・同僚として】細部まで丁寧に仕事をこなしてくれます。日頃の感謝の言葉をこまめに伝えることで、モチベーションのキャッシュが豊かに蓄積されていきます。"
     },
     sumRelation: "👉 【トリセツ判定：誠実な行動と事前アナウンスで信頼構築】",
-    compatibility: { goodId: 7, goodName: "重厚メインフレームさん", goodText: "お互いに安定と堅実さを何よりも重んじるため、一緒にいると底知れない安心感と深いリラックスを得ることができます。", badId: 4, badName: "マッハ・スプリンターちゃん", badText: "相手の行き当たりばったりなスピード感や無計画さにハラハラしてしまいがち。自分のペースを乱されないための「マイスペース設定」が不可欠です。" }
+    compatibility: { goodId: 7, goodName: "重厚メインフレームさん", goodText: "お互いの安定と堅実さを何よりも重んじるため、一緒にいると底知れない安心感と深いリラックスを得ることができます。", badId: 4, badName: "マッハ・スプリンターちゃん", badText: "相手の行き当たりばったりなスピード感や無計画さにハラハラしてしまいがち。自分のペースを乱されないための「マイスペース設定」が不可欠です。" }
   },
   3: { 
     t: "ピコピコ・ルーターたん", chara: "ピコピコ・ルーターたん", id: 3,
@@ -1008,7 +1361,7 @@ const database = {
       female: "【好きな人・恋人・パートナーとして】センスが良く上品で魅力的ですが、妥協を許さない厳しさも持ち合わせています。清潔感のあるスマートな振る舞いが好感度を維持する必須条件です。\n【上司・同僚として】仕事の進め方が非常に美しく正確無比。ただし、精神論や根性論だけで押さえつけようとすると心のシャッターが一瞬で音を立てて降ります。"
     },
     sumRelation: "👉 【トリセツ判定：自立心とパーソナルスペースを守り結論から伝達】",
-    compatibility: { goodId: 10, goodName: "どっしりビッグストレージくん", goodText: "スマートな効率性と大局的な器の大きさが噛み合い、洗練された美しいプロジェクトを完遂できます。", badId: 12, badName: "ぶっとびオーバークロックCPU姉さん", badText: "相手の感情的でエモーショナルな熱量に圧倒されてフリーズし가ち。適度な距離感を保つバリアが必要です。" }
+    compatibility: { goodId: 10, goodName: "どっしりビッグストレージくん", goodText: "スマートな効率性と大局的な器の大きさが噛み合い、洗練された美しいプロジェクトを完遂できます。", badId: 12, badName: "ぶっとびオーバークロックCPU姉さん", badText: "相手の感情的でエモーショナルな熱量に圧倒されてフリーズしがち。適度な距離感を保つバリアが必要です。" }
   },
   6: { 
     t: "キング・プライマリノード様", chara: "キング・プライマリノード様", id: 6,
@@ -1030,7 +1383,7 @@ const database = {
     sumMarriage: "👉 【設計判定：男気と気高さで家族を守る圧倒的カリスマパパママ】",
     work: {
       male: "プロジェクトの総責任者やリーダーとして全権を握り、あやふやな方向性を力強く一つにまとめ上げて牽引する、生まれながらのプロダクトオーナーです。\n指示待ちではなく、自らリスクを取って決断を下す姿は周囲の模範となります。",
-      female: "圧倒的なカリスマ性と電光石火の電光石火の決断力で周囲をぐいぐい引っ張っていく、百戦錬磨のキャリアウーマンです。\n指示待ちの受け身な人間には厳しい指導を行いますが、主体性を持って食らいついてくる部下や後輩のことは、自分の身を削ってでも徹底的に可愛がります。"
+      female: "圧倒的なカリスマ性と電光石火の決断力で周囲をぐいぐい引っ張っていく、百戦錬磨のキャリアウーマンです。\n指示待ちの受け身な人間には厳しい指導を行いますが、主体性を持って食らいついてくる部下や後輩のことは、自分の身を削ってでも徹底的に可愛がります。"
     },
     sumWork: "👉 【適職判定：全権を握り組織を力強く引っ張るプロダクトオーナー】",
     moneySense: {
@@ -1235,7 +1588,7 @@ const database = {
     sumMoneySense: "👉 【財務判定：コストカットと堅実蓄財で結婚相手としての評価MAX】",
     m: "家計簿アプリやセール情報を駆使して確実にコストカットする生活防衛の天才。コツコツと堅実に貯蓄を増やすため、結婚相手としての財務評価はMAX値。",
     sumM: "👉 【金運判定：生活防衛の天才による堅実なコストカット蓄財運】",
-    repair: "他人のために自分のバッテリー（エネルギー）を全放出してしまうため、気づいたときには心身が完全に枯渇（バーンアウト）する癖があります。「まずは自分を最優先で充電する」の自己愛パッチが必須。",
+    repair: "他人のために自分のバッテリー（エネルギー）を全放出してしまうため、気づいたときには心身が完全に枯渇（バーンアウト）する癖があります。\n「まずは自分を最優先で充電する」の自己愛パッチが必須。",
     sumRepair: "👉 【パッチ判定：バーンアウトを防ぐための自分最優先充電パッチ】",
     relation: {
       male: "【好きな人・恋人・パートナーとして】どこまでも優しく尽くしてくれますが、冷たくされると深く傷ついてシャッターが降ります。毎日の「ありがとう」が最大の充電源。\n【上司・同僚として】プレッシャーに弱く、きつい言葉を投げられると機能停止します。優しく褒めて伸ばしてあげる環境がベスト。",
@@ -1284,6 +1637,86 @@ const database = {
     compatibility: { goodId: 4, goodName: "マッハ・スプリンターちゃん", goodText: "お互いのパッションとスピード感が完全に合致し、誰も追いつけないほどの爆速で世界を駆け抜けることができます。", badId: 7, goodName: "重厚メインフレームさん", badText: "相手の慎重でスローなペースや「石橋を叩く姿勢」がもどかしくてイライラが爆発します。" }
   }
 };
+
+// ★ マイナ様のお告げ（12種類）
+const luckyItems = [
+  {
+    name: "癒やしの香りのアロマキャンドル",
+    message: "「エラーログ（今日のストレス）で燃え尽きた心に効くお告げよ。このキャンドルを焚くと、あなたの運気サーバーが強制再起動する仕組みになっているわ。」",
+    url: "https://www.amazon.co.jp/s?k=アロマキャンドル+おしゃれ" 
+  },
+  {
+    name: "開運お守り星型キーホルダー",
+    message: "「カバンにこれをつけておくだけで、日常の小さなバグや嫌なエラーを綺麗にスルーできる魔法のパッチアイテムよ。」",
+    url: "https://www.amazon.co.jp/s?k=星型+キーホルダー+かわいい"
+  },
+  {
+    name: "もふもふ猫ちゃんのスマホリング",
+    message: "「スマホの落下バグを完全に防ぐ、マイナ様お墨付きの可愛いお守り。いつでもどこでも肉球に癒やされてちょうだい！」",
+    url: "https://www.amazon.co.jp/s?k=スマホリング+猫+かわいい"
+  },
+  {
+    name: "ご褒美リラックス入浴剤（バスボム）",
+    message: "「今日のシステム稼働お疲れ様！お風呂にこれをブチ込めば、全身のメモリが極上の香りで綺麗にリフレッシュされる仕様よ。」",
+    url: "https://www.amazon.co.jp/s?k=バスボム+プレゼント+おしゃれ"
+  },
+  {
+    name: "キラキラ輝くミニLEDミラー",
+    message: "「あなたのステータス画面（お顔）の解像度を爆上げしてくれる高精度ミラーよ。自分へのメンテナンスは英知の基本ね。」",
+    url: "https://www.amazon.co.jp/s?k=コンパクトミラー+LED+かわいい"
+  },
+  {
+    name: "開運パステルヘアクリップ",
+    message: "「前髪の乱れは思考の乱れ！この可愛いクリップで不要なノイズをサクッと留めて、処理効率を最大化させてあげて。」",
+    url: "https://www.amazon.co.jp/s?k=ヘアクリップ+韓国風+かわいい"
+  },
+  {
+    name: "香水風おしゃれハンドクリーム",
+    message: "「乾燥した指先は運気ダウンのバグの原因よ。極上の香りで潤いパッチを当てて、周囲の好感度ネットワークを接続して。」",
+    url: "https://www.amazon.co.jp/s?k=ハンドクリーム+おしゃれ+プレゼント"
+  },
+  {
+    name: "肉球デザインのマウスパッド",
+    message: "「日々のクリック作業で疲れた手首に、プニプニの肉球バッファを搭載してあげるわ。これで作業効率も倍増間違いなしね！」",
+    url: "https://www.amazon.co.jp/s?k=肉球+マウスパッド+かわいい"
+  },
+  {
+    name: "水晶のミニ浄化インテリア",
+    message: "「お部屋のネガティブなエラーログをクリーンに浄化する天然石のミニオブジェよ。マイナ様の神殿とお揃いの開運インテリアね。」",
+    url: "https://www.amazon.co.jp/s?k=水晶+原石+インテリア+おしゃれ"
+  },
+  {
+    name: "ふわふわ雲型ミニポーチ",
+    message: "「細かいガジェットやリップのデータを綺麗に収納する雲型ポーチよ。持ち歩くだけで運気サーバーがふんわり軽くなるわ。」",
+    url: "https://www.amazon.co.jp/s?k=メイクポーチ+雲型+かわいい"
+  },
+  {
+    name: "星屑ラメ入りボールペン",
+    message: "「手書きのメモやタスクリストを書き記すための魔法のペン。持っているだけで日々のドキュメント作成がはかどる仕様よ。」",
+    url: "https://www.amazon.co.jp/s?k=可愛いボールペン+キラキラ"
+  },
+  {
+    name: "開運フォーチュン・ミニノート",
+    message: "「ひらめいたアイデアやバグ対策を書き留めるための神聖なノート。あなたの日常を素敵な物語にコンパイルしてちょうだい。」",
+    url: "https://www.amazon.co.jp/s?k=可愛いノート+おしゃれ"
+  }
+];
+
+// ★ 日付 ＋ シード値（誕生日）で今日一日固定のアイテムを決定する関数
+function getTodayItem(seedValue) {
+  const today = new Date();
+  const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  
+  let hash = 0;
+  const combined = dateString + String(seedValue);
+  for (let i = 0; i < combined.length; i++) {
+    hash = (hash << 5) - hash + combined.charCodeAt(i);
+    hash |= 0;
+  }
+  
+  const index = Math.abs(hash) % luckyItems.length;
+  return luckyItems[index];
+}
 
 // ★ 相性先（個別詳細ページ）
 function openCharacterDetailTab(charaId) {
@@ -1455,14 +1888,17 @@ function diagnose() {
   playDeploySound();
 
   let targetDate = null;
+  let seedKey = "";
   if (currentMode === 'date') {
     const val = document.getElementById('birthDate').value;
     if (!val) { alert("たんじょうびをえらんでね！"); return; }
     targetDate = parseInputToDate(val);
+    seedKey = val;
   } else {
     const val = document.getElementById('birthText').value;
     if (!val) { alert("和暦（例: 昭和60年2月22日）を入力してね！"); return; }
     targetDate = parseInputToDate(val);
+    seedKey = val;
   }
 
   if (!targetDate || isNaN(targetDate.getTime())) {
@@ -1478,6 +1914,12 @@ function diagnose() {
 
   const kanshiNo = getKanshiNoFromDate(targetDate, selectedGender);
   const data = getDatabaseData(kanshiNo, selectedGender);
+
+  // ★ マイナ様のお告げ（日付＋シード値固定）を生成してセット
+  const luckyItem = getTodayItem(seedKey);
+  document.getElementById('minaiMessage').innerText = luckyItem.message;
+  document.getElementById('minaiLink').href = luckyItem.url;
+  document.getElementById('minaiLink').innerText = `🛒 ${luckyItem.name} をAmazonで見る（開運）`;
 
   showCharacterDetailWithAttribute(kanshiNo, data);
 }
@@ -1501,7 +1943,6 @@ function showCharacterDetailWithAttribute(kanshiNo, data) {
   document.getElementById('boss-sub').innerText = baseDataOrFallback(kanshiNo).t;
   document.getElementById('boss-title').innerText = data.chara;
 
-  // 各本文と、新しく追加した一言まとめバッジをセット
   document.getElementById('boss-desc').innerText = data.d;
   document.getElementById('sum-desc').innerText = data.sumD;
 
